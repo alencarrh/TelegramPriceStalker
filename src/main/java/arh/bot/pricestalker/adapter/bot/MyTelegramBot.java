@@ -1,6 +1,8 @@
-package arh.bot.pricestalker.bot;
+package arh.bot.pricestalker.adapter.bot;
 
+import arh.bot.pricestalker.adapter.bot.command.Commands;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -15,14 +17,18 @@ public class MyTelegramBot extends TelegramLongPollingBot {
     private final String token;
     private final String username;
 
-    public MyTelegramBot(@Value("${telegram-bot.token}") String botToken, @Value("${telegram-bot.username}") String username) {
+    private final Commands commands;
+
+    public MyTelegramBot(@Value("${telegram-bot.token}") String botToken, @Value("${telegram-bot.username}") String username, @Autowired Commands commands) {
         super(botToken);
         this.token = botToken;
         this.username = username;
+        this.commands = commands;
     }
 
     @Override
     public void onUpdateReceived(Update update) {
+        log.info("updating...");
         if (update.hasMessage()) {
             // handle incoming messages
             log.info("Received message");

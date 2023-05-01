@@ -1,6 +1,6 @@
 package arh.bot.pricestalker;
 
-import arh.bot.pricestalker.bot.MyTelegramBot;
+import arh.bot.pricestalker.adapter.bot.MyTelegramBot;
 import jakarta.annotation.PostConstruct;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,6 @@ public class PriceStalkerArhBotApplication {
         SpringApplication.run(PriceStalkerArhBotApplication.class, args);
 
     }
-
 
     @PostConstruct
     public void startBot() {

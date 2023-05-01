@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  postgres_db:
+    image: postgres:15.2
+    restart: always
+    environment:
+      POSTGRES_USER: my_bot_app_user
+      POSTGRES_PASSWORD: my_bot_app_password
+      POSTGRES_DB: my_bot_app_db
+    ports:
+      - 5432:5432
